@@ -1,7 +1,6 @@
 app.directive('listView', ['dataStore', '$timeout', '$q', function (dataStore, $timeout, $q) {
     return {
         templateUrl: 'templates/list.html',
-        scope: true,
         compile: function (tElement, tAttributes) {
             
         },
@@ -84,7 +83,7 @@ app.directive('listView', ['dataStore', '$timeout', '$q', function (dataStore, $
                 document.getElementById('pop-over-' + _idx).classList.remove('is-shown');
                 var lists = dataStore.getData('list').splice(idx, 1);
                 dataStore.setData('list', lists);
-
+                $scope.listItems = dataStore.getData('list');
             }
             $scope.closeThis = function () {
                 document.getElementById('pop-over-' + _idx).classList.remove('is-shown');
