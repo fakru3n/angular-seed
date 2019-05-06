@@ -42,6 +42,7 @@ app.directive('listView', ['dataStore', '$timeout', '$q', function (dataStore, $
                     $timeout(function () {
                         $scope.cardName = '';                        
                         document.getElementById('cardName-' + _idx).focus();
+                        document.getElementById('pop-over-' + _idx).classList.remove('is-shown');
                     }, 0);
                 })                
             }
@@ -80,11 +81,14 @@ app.directive('listView', ['dataStore', '$timeout', '$q', function (dataStore, $
             }
 
             $scope.archiveList = function (idx) {
+                document.getElementById('pop-over-' + _idx).classList.remove('is-shown');
                 var lists = dataStore.getData('list').splice(idx, 1);
                 dataStore.setData('list', lists);
 
             }
-
+            $scope.closeThis = function () {
+                document.getElementById('pop-over-' + _idx).classList.remove('is-shown');
+            }
             $(function () {
                 $('div[id^="cards-container"]').sortable({
                     connectWith: ".sortable",
