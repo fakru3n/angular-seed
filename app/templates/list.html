@@ -1,0 +1,57 @@
+<div class="list">
+    <div class="list-header">
+        <h3>{{ list.name }}</h3>
+        <button ng-click="clickMore();"><i class='material-icons'> more_horiz </i></button>
+    </div>
+    <div class="addListButton open-card-composer">
+        <div class="list-cards">
+            <div id="cards-container{{$index}}" class="sortable ui-sortable">
+                <div list-card-details ng-if="cards" ng-repeat="card in cards" id="eachCard{{$index}}" class="list-card ui-sortable-handle">
+                    <div class="list-card-details">
+                        <span class="list-card-title">{{ card.title }}</span>
+                        <i class='material-icons'> edit </i>
+                    </div>
+                </div>
+            </div>
+            <div class="card-composer" ng-show="showComposer" id="card-composer-{{$index}}">
+                <div class="list-card">
+                    <div class="list-card-details">
+                        <textarea class="list-card-composer-textarea" placeholder="Enter a title for this card…" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 54px;" ng-model="cardName" id="cardName-{{ $index }}" ng-keypress="addCardByKeypress($event)"></textarea>
+                    </div>
+                </div>
+                <div class="listAddBtn">
+                    <button class="btn-1" ng-click="addCardTitle()" type="button">Add Card</button>
+                    <button class="btn-2" ng-click="hideCardTitleTxtBox()" type="button">
+                        <i class='material-icons'> clear </i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button ng-show="addCardBtn" ng-click="addCard()" id="add-card-btn-{{$index}}" class="button btn-Add add-card-btn"><i class='material-icons'> add </i> Add a card </button>
+    </div>
+
+    <!-- Pop Over  -->
+    <div class="pop-over" id="pop-over-{{$index}}">
+        <div class="no-back">
+            <div class="pop-over-header js-pop-over-header">
+                <span class="pop-over-header-title">List Actions</span>
+                <a ng-click="closeThis()" href="#" class="pop-over-header-close-btn"><i class='material-icons'> clear </i></a>
+            </div>
+            <div>
+                <div class="pop-over-content js-pop-over-content u-fancy-scrollbar js-tab-parent" style="max-height: 549px;">
+                    <div>
+                        <div>
+                            <ul class="pop-over-list">
+                                <li><a ng-click="addCard($index)" href="#">Add Card…</a></li>
+                            </ul>
+                            <hr>
+                            <ul class="pop-over-list">
+                                <li><a ng-click="archiveList($index)" href="#">Archive This List</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
